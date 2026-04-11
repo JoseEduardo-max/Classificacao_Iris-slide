@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>KNN - Iris</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/black.css">
+
+  <style>
+    .fala {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #aaa;
+      font-style: italic;
+    }
+    code {
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+  <!-- Slide 1 -->
+  <section>
+    <h2>Classificação de Flores com KNN</h2>
+    <p>Dataset Íris</p>
+  </section>
+
+  <!-- Slide 2 -->
+  <section>
+    <h3>Problema</h3>
+    <ul>
+      <li>Classificar flores automaticamente</li>
+      <li>Baseado em medidas</li>
+    </ul>
+    <p class="fala">
+      O objetivo é prever a espécie da flor com base em características físicas.
+    </p>
+  </section>
+
+  <!-- Slide 3 -->
+  <section>
+    <h3>Dataset Íris</h3>
+    <ul>
+      <li><strong>Espécies:</strong></li>
+      <ul>
+        <li>Setosa</li>
+        <li>Versicolor</li>
+        <li>Virginica</li>
+      </ul>
+      <br>
+      <li><strong>Features:</strong></li>
+      <ul>
+        <li>Comprimento da sépala</li>
+        <li>Largura da sépala</li>
+        <li>Comprimento da pétala</li>
+        <li>Largura da pétala</li>
+      </ul>
+    </ul>
+  </section>
+
+  <!-- Slide 4 -->
+  <section>
+    <h3>Tipo de Problema</h3>
+    <p>Classificação Supervisionada</p>
+    <p class="fala">
+      Temos dados com resposta, então usamos aprendizado supervisionado.
+    </p>
+  </section>
+
+  <!-- Slide 5 -->
+  <section>
+    <h3>Aplicando KNN</h3>
+    <ul>
+      <li>Escolher K</li>
+      <li>Calcular distâncias</li>
+      <li>Selecionar vizinhos</li>
+      <li>Classificar por maioria</li>
+    </ul>
+  </section>
+
+  <!-- Slide 6 -->
+  <section>
+    <h3>Código (sklearn)</h3>
+    <pre><code>
+from sklearn.neighbors import KNeighborsClassifier
+
+model = KNeighborsClassifier(n_neighbors=3)
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+    </code></pre>
+    <p class="fala">
+      Aqui criamos o modelo, treinamos e fazemos previsões.
+    </p>
+  </section>
+
+  <!-- Slide 7 -->
+  <section>
+    <h3>Avaliação</h3>
+    <ul>
+      <li>Acurácia</li>
+      <li>Comparação: real vs previsto</li>
+    </ul>
+    <p class="fala">
+      Usamos métricas para avaliar o desempenho do modelo.
+    </p>
+  </section>
+
+  <!-- Slide 8 -->
+  <section>
+    <h3>Resultado Esperado</h3>
+    <ul>
+      <li>Alta acurácia (~90%+)</li>
+    </ul>
+    <p class="fala">
+      O dataset Íris é bem estruturado, então o KNN funciona muito bem.
+    </p>
+  </section>
+
+  <!-- Slide 9 -->
+  <section>
+    <h3>Interpretação</h3>
+    <ul>
+      <li>Classificação baseada em proximidade</li>
+      <li>Dados similares → mesma classe</li>
+    </ul>
+  </section>
+
+  <!-- Slide 10 -->
+  <section>
+    <h3>Conclusão</h3>
+    <ul>
+      <li>KNN funciona bem para esse problema</li>
+      <li>Fácil implementação</li>
+      <li>Ótimo para aprendizado inicial</li>
+    </ul>
+  </section>
+
+  <!-- Slide EXTRA (diferencial) -->
+  <section>
+    <h3>Testando diferentes valores de K</h3>
+    <ul>
+      <li>K = 1 → mais sensível</li>
+      <li>K = 3 → equilíbrio</li>
+      <li>K = 10 → mais generalização</li>
+    </ul>
+    <p class="fala">
+      Ajustar o K pode melhorar significativamente o desempenho do modelo.
+    </p>
+  </section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script>
+  Reveal.initialize();
+</script>
+
+</body>
+</html>
