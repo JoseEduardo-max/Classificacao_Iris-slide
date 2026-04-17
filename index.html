@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/black.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/plugin/highlight/monokai.css">
-
+  
 
   <style>
     .fala {
@@ -18,8 +18,9 @@
       font-style: italic;
     }
 
-    code {
-      font-size: 16px;
+    img {
+      max-width: 600px;
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -42,39 +43,29 @@
           <li>Classificar flores automaticamente</li>
           <li>Baseado em medidas</li>
         </ul>
-        <p class="fala">
-          O objetivo é prever a espécie da flor com base em características físicas.
-        </p>
       </section>
 
       <!-- Slide 3 -->
       <section>
         <h3>Dataset Íris</h3>
         <ul>
-          <li><strong>Espécies:</strong></li>
-          <ul>
-            <li>Setosa</li>
-            <li>Versicolor</li>
-            <li>Virginica</li>
-          </ul>
-          <br>
-          <li><strong>Features:</strong></li>
-          <ul>
-            <li>Comprimento da sépala</li>
-            <li>Largura da sépala</li>
-            <li>Comprimento da pétala</li>
-            <li>Largura da pétala</li>
-          </ul>
+          <li>Setosa</li>
+          <li>Versicolor</li>
+          <li>Virginica</li>
         </ul>
+      </section>
+
+      <!-- 🖼️ IMAGEM DATASET -->
+      <section>
+        <h3>Visualização do Dataset</h3>
+        <!-- COLOQUE SUA IMAGEM AQUI -->
+        <img src="img/dataset-iris.png">
       </section>
 
       <!-- Slide 4 -->
       <section>
         <h3>Tipo de Problema</h3>
         <p>Classificação Supervisionada</p>
-        <p class="fala">
-          Temos dados com resposta, então usamos aprendizado supervisionado.
-        </p>
       </section>
 
       <!-- Slide 5 -->
@@ -83,64 +74,58 @@
         <ul>
           <li>Escolher K</li>
           <li>Calcular distâncias</li>
-          <li>Selecionar vizinhos</li>
-          <li>Classificar por maioria</li>
+          <li>Classificar</li>
         </ul>
       </section>
 
       <!-- Slide 6 -->
       <section>
-        <h3>Código (3 modelos)</h3>
-        <pre><code>
-model1 = KNN(n_neighbors=1)
-model2 = KNN(n_neighbors=3)
-model3 = KNN(n_neighbors=7)
-    </code></pre>
-        <p class="fala">
-          Criamos três modelos com diferentes valores de K.
-        </p>
+        <h3>Modelos Criados</h3>
+        <ul>
+          <li>K = 1</li>
+          <li>K = 3</li>
+          <li>K = 7</li>
+        </ul>
       </section>
 
+      <!-- 🖼️ IMAGEM RESULTADOS -->
       <section>
         <h3>Código completo</h3>
-        <pre><code data-trim data-noescape>
-import pandas as pd 
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score
+        <pre>
+          <code data-trim data-noescape> 
+            from sklearn.datasets import load_iris 
+            from sklearn.model_selection import train_test_split 
+            from sklearn.neighbors import KNeighborsClassifier 
+            from sklearn.metrics import accuracy_score 
 
-# carregar dataset
-iris = load_iris()
-X = iris.data
-y = iris.target
+            # carregar dataset
+            iris = load_iris()
+            X = iris.data 
+            y = iris.target
 
-# dividir treino e teste
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
+            # dividir treino e teste 
+            X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.2, random_state=42 ) 
 
-# criar 3 modelos com parâmetros diferentes
-modelos = {
-    "K=1": KNeighborsClassifier(n_neighbors=1),
-    "K=3": KNeighborsClassifier(n_neighbors=3),
-    "K=7": KNeighborsClassifier(n_neighbors=7),
-}
-
-# treinar e avaliar
-resultados = {}
-
-for nome, modelo in modelos.items():
-    modelo.fit(X_train, y_train)
-    y_pred = modelo.predict(X_test)
-    acc = accuracy_score(y_test, y_pred)
-    resultados[nome] = acc
-
-# mostrar resultados
-for nome, acc in resultados.items():
-    print(f"{nome} -> Acurácia: {acc:.2f}")
-  </code></pre>
+            # cria 3 modelos com parâmetros diferentes 
+            modelos = { "K=1": KNeighborsClassifier(n_neighbors=1), 
+                        "K=3": KNeighborsClassifier(n_neighbors=3), 
+                        "K=7": KNeighborsClassifier(n_neighbors=7),} 
+            
+            # treina e avalia resultados = {} 
+            for nome, modelo in modelos.items(): 
+            modelo.fit(X_train, y_train) 
+            y_pred = modelo.predict(X_test) 
+            acc = accuracy_score(y_test, y_pred) 
+            
+            resultados[nome] = acc 
+            
+            # mostra resultados 
+            for nome, acc in resultados.items(): 
+            print(f"{nome} -> Acurácia: {acc:.2f}") 
+          </code>
+        </pre>
       </section>
+
       <!-- Slide 7 -->
       <section>
         <h3>Resultados (Acurácia)</h3>
@@ -149,51 +134,39 @@ for nome, acc in resultados.items():
           <li>K = 3 → 0.97</li>
           <li>K = 7 → 0.96</li>
         </ul>
-        <p class="fala">
-          Os resultados mostram como o valor de K influencia o desempenho.
-        </p>
+      </section>
+
+      <!-- 🖼️ IMAGEM GRÁFICO -->
+      <section>
+        <h3>Gráfico de Acurácia</h3>
+        <!-- COLOQUE SUA IMAGEM AQUI -->
+        <img src="img/analise-resultados.png">
       </section>
 
       <!-- Slide 8 -->
       <section>
-        <h3>Análise dos Resultados</h3>
+        <h3>Análise</h3>
         <ul>
-          <li>K pequeno → sensível a ruído</li>
+          <li>K pequeno → sensível</li>
           <li>K médio → melhor equilíbrio</li>
-          <li>K grande → mais generalização</li>
+          <li>K grande → generaliza mais</li>
         </ul>
       </section>
 
       <!-- Slide 9 -->
       <section>
-        <h3>Impacto dos Parâmetros</h3>
-        <ul>
-          <li>O valor de K influencia diretamente a acurácia</li>
-          <li>Escolher K corretamente melhora o modelo</li>
-          <li>Hiperparâmetros são fundamentais em ML</li>
-        </ul>
-      </section>
-
-      <!-- Slide 10 -->
-      <section>
         <h3>Conclusão</h3>
         <ul>
-          <li>KNN funciona bem para esse problema</li>
-          <li>Fácil implementação</li>
-          <li>Ajuste de K é essencial</li>
+          <li>KNN é eficiente</li>
+          <li>Funciona bem no Iris</li>
+          <li>K influencia diretamente</li>
         </ul>
-        <p class="fala">
-          Pequenas mudanças no parâmetro K podem impactar significativamente o resultado.
-        </p>
       </section>
 
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
-  <script>
-    Reveal.initialize();
-  </script>
   <script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/highlight/highlight.js"></script>
 
   <script>
